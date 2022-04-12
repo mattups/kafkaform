@@ -170,11 +170,3 @@ resource "azurerm_network_security_rule" "allow_control_center" {
   resource_group_name         = azurerm_resource_group.rg_kafkaform.name
   network_security_group_name = azurerm_network_security_group.kafkaform_nsg.name
 }
-
-
-# Connect the security group to the network interface
-resource "azurerm_network_interface_security_group_association" "kafkaform_sg" {
-  network_interface_id      = azurerm_network_interface.rg_kafkaform_nic.id
-  network_security_group_id = azurerm_network_security_group.kafkaform_nsg.id
-}
-

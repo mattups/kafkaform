@@ -3,7 +3,9 @@ output "resource_group_name" {
 }
 
 output "public_ip_address" {
-  value = azurerm_linux_virtual_machine.rg_kafkaform_instances.*.public_ip_address
+  value = toset([
+    for rg_kafkaform_instances in azurerm_linux_virtual_machine.rg_kafkaform_instances : rg_kafkaform_instances.public_ip_address
+  ])
 }
 
 output "tls_private_key" {

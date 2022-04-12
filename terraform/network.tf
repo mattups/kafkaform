@@ -1,9 +1,3 @@
-# Create resource group.
-resource "azurerm_resource_group" "rg_kafkaform" {
-  name     = "rg-kafkaform"
-  location = var.rg_region
-}
-
 # Create virtual network
 resource "azurerm_virtual_network" "rg_kafkaform_network" {
   name                = "rg_kafkaform_network"
@@ -22,22 +16,9 @@ resource "azurerm_subnet" "rg_kafkaform_subnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "rg_kafkaform_public_ip" {
-  name                = "rg_kafkaform_public_ip"
+  for_each            = toset(var.kafka_instance_name)
+  name                = "public_ip-${var.kafka_instance_prefix}-${each.key}"
   location            = azurerm_resource_group.rg_kafkaform.location
   resource_group_name = azurerm_resource_group.rg_kafkaform.name
   allocation_method   = "Dynamic"
-}
-
-# Create network interface
-resource "azurerm_network_interface" "rg_kafkaform_nic" {
-  name                = "rg_kafkaform_nic"
-  location            = azurerm_resource_group.rg_kafkaform.location
-  resource_group_name = azurerm_resource_group.rg_kafkaform.name
-
-  ip_configuration {
-    name                          = "rg_kafkaform_nic_config"
-    subnet_id                     = azurerm_subnet.rg_kafkaform_subnet.id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.rg_kafkaform_public_ip.id
-  }
 }
