@@ -1,0 +1,33 @@
+# Terraform
+**/.terraform/*
+**/.terraform
+*.tfstate
+*.tfstate.*
+
+crash.log
+crash.*.log
+*.terraform.lock*
+
+*.tfvars
+*.tfvars.json
+
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+.terraformrc
+terraform.rc
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+.history/
+*.vsix
+
+/config.sh
