@@ -35,11 +35,11 @@ jq -r '.values.root_module.resources[].values | select(.private_key_pem) |.priva
 ```
 Fix its permissions:
 ```
-chmod ~/.ssh/terraform_private_key.pem
+chmod 600 ~/.ssh/terraform_private_key.pem
 ```
 
 And then if everything is ok connect to the instance:
 ```
 ssh -i ~/.ssh/terraform_private_key.pem kafka-admin@ip
 ```
-_Note that you have to use the `kafka_admin_user` you declared in `variables.tf` and the public ip address created by Terraform and outputted at the end of the plan
+_Note that you have to use the `kafka_admin_user` you declared in `variables.tf` and the public ip address created by Terraform and outputted at the end of the plan_ 
