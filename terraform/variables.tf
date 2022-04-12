@@ -21,11 +21,11 @@ variable "kafka_admin_user" {
 }
 
 variable "source_image_offer" {
-  default = "UbuntuServer"
+  default = "0001-com-ubuntu-server-focal"
 }
 
 variable "source_image_sku" {
-  default = "18_04-lts-gen2"
+  default = "20_04-lts-gen2"
 }
 
 variable "source_image_publisher" {
