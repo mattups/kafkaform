@@ -21,4 +21,5 @@ resource "azurerm_public_ip" "rg_kafkaform_public_ip" {
   location            = azurerm_resource_group.rg_kafkaform.location
   resource_group_name = azurerm_resource_group.rg_kafkaform.name
   allocation_method   = "Dynamic"
+  domain_name_label   = "${var.kafka_instance_prefix}-${each.key}"
 }
